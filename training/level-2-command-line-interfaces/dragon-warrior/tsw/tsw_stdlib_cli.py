@@ -66,11 +66,11 @@ def process_user_input() -> argparse.Namespace:
         required=True,
         help="Name or names of file(s) to be deleted")
 
-    delete_parser.add_argument(
-        "-d","--directory",
-        metavar="Directory where file(s) are to be deleted",
-        required=True,
-        help="Directory in which file(s) are to be deleted")
+#    delete_parser.add_argument(
+#        "-d","--directory",
+#        metavar="Directory where file(s) are to be deleted",
+#        required=True,
+#        help="Directory in which file(s) are to be deleted")
 
     return parser.parse_args()
 
@@ -89,5 +89,4 @@ if __name__ == '__main__':
 
     if program_arguments.command == 'delete':
         file_ops.delete_files (
-            program_arguments.file,
-            program_arguments.directory)
+            program_arguments.file)

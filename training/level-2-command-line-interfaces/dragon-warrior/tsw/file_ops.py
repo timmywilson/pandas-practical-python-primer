@@ -75,26 +75,28 @@ def move_files(files: list, destination: str):
                 result.decode(
                     encoding='utf-8').rstrip())
 
-def delete_files(files: list, directory: str):
+#def delete_files(files: list, directory: str):
+def delete_files(files: list):
     """
     Delete files
 
     Args:
         files: a list of files to be deleted
-        directory: the directory where the file resides
     """
     for file in files:
         try:
             result = subprocess.check_output (           # subprocess is a function of python
-                args=['rm', '-v', file, directory],  # defining the arguments
+                args=['rm', '-v', file],  # defining the arguments
                 stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as error:
-            if "cannot remove" in error.output.decode():
-                print("Error: '{directory}' "/" '{file}' doesn't exist".format(
-                    file=file, directory=directory))
+            if "cannot stat" in error.output.decode():
+#                print("Error: '{}' doesn't exist'".format(file))
+#            elif "Not a directory" in error.output.decode():
+                print("Error: Non-Existent File '{}' ".format(file))
             elif "Permission denied" in error.output.decode():
-                print("Error: No Rights to Delete '{file}' from '{directory}' ".format(
-                    file=file, directory=directory))
+                print("Error: No Rights to Delete '{file}' ".format(
+                    #file=file, directory=directory))
+                    file=file))
             else:
                 print(error.output.decode())
                 raise

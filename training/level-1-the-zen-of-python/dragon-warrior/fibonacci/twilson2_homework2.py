@@ -10,8 +10,8 @@ f4 = 0
 while f2 <= 4000000:
     if f2 % 2 == 0:
         print("f2:" ,f2)
-        #f4 = f4 + f2
-        fibadd(f4, f2, f4)
+        f4 = f4 + f2
+        #fibadd(f4, f2, f4)
     f1 = f2
     f2 = f3
     f3 = f1 + f2
